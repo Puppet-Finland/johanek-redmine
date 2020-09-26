@@ -1,30 +1,6 @@
 # Class redmine::params
 class redmine::params {
 
-  case $::osfamily {
-    'RedHat': {
-      case $::operatingsystem {
-        'Fedora': {
-          if versioncmp($::operatingsystemrelease, '19') >= 0 or $::operatingsystemrelease == 'Rawhide' {
-            $mysql_devel = 'mariadb-devel'
-          } else {
-            $mysql_devel = 'mysql-devel'
-          }
-        }
-        /^(RedHat|CentOS|Scientific)$/: {
-          if versioncmp($::operatingsystemmajrelease, '7') >= 0 {
-            $mysql_devel = 'mariadb-devel'
-          } else {
-            $mysql_devel = 'mysql-devel'
-          }
-        }
-        default: {
-          $mysql_devel = 'mysql-devel'
-        }
-      }
-    }
-  }
-
   $bundle = '/usr/bin/bundle2.7'
 
   if $redmine::database_adapter {
