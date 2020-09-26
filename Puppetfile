@@ -3,23 +3,10 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-# use dependencies defined in metadata.json
-metadata
+mod 'puppetlabs-apache', '5.5.0'
+mod 'puppetlabs-concat', '6.2.0'
+mod 'puppet-epel', '3.0.1'
+mod 'puppetlabs-postgresql', '6.7.0'
+mod 'puppetlabs-stdlib', '6.4.0'
+mod 'puppetlabs-vcsrepo', '3.1.1'
 
-# use dependencies defined in Modulefile
-# modulefile
-
-# A module from the Puppet Forge
-mod 'stahnma-epel'
-
-# A module from git
-# mod 'puppetlabs-ntp',
-#   :git => 'git://github.com/puppetlabs/puppetlabs-ntp.git'
-
-# A module from a git branch/tag
-# mod 'puppetlabs-apt',
-#   :git => 'https://github.com/puppetlabs/puppetlabs-apt.git',
-#   :ref => '1.4.x'
-
-# A module from Github pre-packaged tarball
-# mod 'puppetlabs-apache', '0.6.0', :github_tarball => 'puppetlabs/puppetlabs-apache'
