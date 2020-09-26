@@ -11,27 +11,29 @@
   "operatingsystem_support": [
     {
     "operatingsystem":"RedHat",
-    "operatingsystemmajrelease":[ "6" ]
+    "operatingsystemmajrelease":[ "8" ]
     },
     {
     "operatingsystem":"CentOS",
-    "operatingsystemmajrelease":[ "6" ]
+    "operatingsystemmajrelease":[ "8" ]
+    },
+    {
+    "operatingsystem":"Scientific",
+    "operatingsystemmajrelease":[ "8" ]
     },
     {
     "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "12.04", "14.04" ]
-    },
-    {
-    "operatingsystem": "Debian",
-    "operatingsystemrelease": [ "7" ]
+    "operatingsystemrelease": [ "18.04", "20.04" ]
     }
   ],
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 < 5.0.0" },
-    { "name": "puppetlabs/mysql", "version_requirement": ">= 2.0.0 < 3.0.0" },
-    { "name": "puppetlabs/postgresql", "version_requirement": ">= 3.3.0 < 5.0.0" },
-    { "name": "puppetlabs/apache", "version_requirement": ">= 1.0.0 < 2.0.0" },
-    { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 2.0.0" },
-    { "name": "puppetlabs/vcsrepo", "version_requirement": ">= 1.0.0 < 2.0.0" }
+    { "name": "puppetlabs/apache", "version_requirement": ">= 1.0.0 < 6.0.0" },
+    { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 7.0.0" },
+    { "name": "puppet/epel", "version_requirement": ">= 2.0.0 < 4.0.0" },
+    { "name": "puppetlabs/mysql", "version_requirement": ">= 2.0.0 < 11.0.0" },
+    { "name": "tohuwabohu/patch", "version_requirement": ">= 1.0.0 < 2.0.0" },
+    { "name": "puppetlabs/postgresql", "version_requirement": ">= 3.3.0 < 7.0.0" },
+    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 < 7.0.0" },
+    { "name": "puppetlabs/vcsrepo", "version_requirement": ">= 1.0.0 < 4.0.0" }
   ]
 }
