@@ -38,9 +38,7 @@ class redmine::params {
   if $redmine::version {
     $version = $redmine::version
   } else {
-    $version = '2.2.3'
-    warning('The default version will change to 2.6.4 in the next major release')
-    warning('If this is not what you want, please specify a version in hiera or your manifest')
+    $version = '4.1.1'
   }
 
   case $redmine::provider {
