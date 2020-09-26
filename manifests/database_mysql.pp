@@ -23,7 +23,8 @@ class redmine::database_mysql {
     mysql_grant { "${redmine::database_user}@${redmine::database_server}/${redmine::development_database}.*":
       user       => "${redmine::database_user}@${redmine::database_server}",
       privileges => ['all'],
-      table      => "${redmine::development_database}.*"
+      table      => "${redmine::development_database}.*",
+      before     => Exec['rails_migrations'],
     }
 
 }

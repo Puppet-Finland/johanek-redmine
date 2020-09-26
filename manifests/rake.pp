@@ -19,6 +19,7 @@ class redmine::rake {
     command     => 'rake db:migrate',
     notify      => Exec['plugin_migrations'],
     refreshonly => true,
+    require     => Class['::redmine::database'],
   }
 
   # Perform plugin migrations

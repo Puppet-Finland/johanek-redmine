@@ -5,7 +5,7 @@ class redmine::database_psql {
       user     => $redmine::database_user,
       password => postgresql_password($redmine::database_user, $redmine::database_password),
       encoding => 'utf8',
-      require  => Class['postgresql::server']
+      require  => Class['postgresql::server'],
+      before   => Exec['rails_migrations'],
     }
-
 }
