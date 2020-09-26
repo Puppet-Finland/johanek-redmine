@@ -1,6 +1,8 @@
 # Class redmine::install
 class redmine::install {
 
+  $bundle = $::redmine::params::bundle
+
   # Install dependencies
 
   $generic_packages = [ 'make', 'gcc' ]
@@ -35,7 +37,7 @@ class redmine::install {
   } ->
 
   exec { 'bundle_redmine':
-    command => "bundle install --gemfile ${redmine::install_dir}/Gemfile --without ${without_gems}",
+    command => "${bundle} install --gemfile ${redmine::install_dir}/Gemfile --without ${without_gems}",
     creates => "${redmine::install_dir}/Gemfile.lock",
     require => [ Package['bundler'], Package['make'], Package['gcc'], Package[$packages] ],
     notify  => Exec['rails_migrations'],
@@ -46,7 +48,7 @@ class redmine::install {
   if $redmine::provider != 'wget' {
     exec { 'bundle_update':
       cwd         => $redmine::install_dir,
-      command     => 'bundle update',
+      command     => "${bundle} update",
       refreshonly => true,
       subscribe   => Vcsrepo['redmine_source'],
       notify      => Exec['rails_migrations'],

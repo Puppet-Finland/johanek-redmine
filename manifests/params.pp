@@ -25,6 +25,8 @@ class redmine::params {
     }
   }
 
+  $bundle = '/usr/bin/bundle2.7'
+
   if $redmine::database_adapter {
     $real_adapter = $redmine::database_adapter
   } elsif versioncmp($::rubyversion, '1.9') >= 0 {
