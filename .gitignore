@@ -9,3 +9,4 @@ modules/
 .bundle/
 .librarian/
 .kitchen/
+ubuntu-*-cloudimg-console.log
