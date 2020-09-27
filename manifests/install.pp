@@ -3,16 +3,36 @@ class redmine::install {
 
   # Install dependencies
   $generic_packages = [ 'make', 'gcc' ]
-  $debian_packages  = [ 'libmysql++-dev', 'libmysqlclient-dev', 'libmagickcore-dev', 'libmagickwand-dev', 'ruby-dev', 'libpq-dev', 'imagemagick' ]
+  $debian_packages  = [ 'libmysql++-dev', 'libmysqlclient-dev', 'libmagickcore-dev', 'libmagickwand-dev', 'ruby-dev', 'libpq-dev',
+                        'imagemagick' ]
   $redhat_packages  = [ 'postgresql-devel', 'sqlite-devel', 'ImageMagick-devel', 'ruby-devel', 'mariadb-devel' ]
 
   case $::osfamily {
-    'Debian':   { $packages = concat($generic_packages, $debian_packages) }
-    'RedHat':   { $packages = concat($generic_packages, $redhat_packages) }
+    'Debian':   {
+      $packages = concat($generic_packages, $debian_packages)
+      $packages_require = undef
+    }
+    'RedHat':   {
+      $packages = concat($generic_packages, $redhat_packages)
+
+      if $::operatingsystem == 'CentOS' {
+
+        # Required for ImageMagick-devel dependencies
+        file_line { 'CentOS-Powertools-enabled':
+          path  => '/etc/yum.repos.d/CentOS-PowerTools.repo',
+          line  => 'enabled=1',
+          match => '^enabled=(0|1)$',
+        }
+
+        $packages_require = File_line['CentOS-Powertools-enabled']
+      } else {
+        $packages_require = undef
+      }
+    }
     default:    { $packages = concat($generic_packages, $redhat_packages) }
   }
 
-  ensure_packages($packages)
+  ensure_packages($packages, { 'require' => $packages_require })
 
   case $redmine::database_adapter {
     'postgresql' : {
@@ -50,7 +70,7 @@ class redmine::install {
   package { 'bundler':
     ensure   => present,
     provider => gem
-  } ->
+  }
 
   exec { 'bundle_redmine':
     command => "bundle install --gemfile ${redmine::install_dir}/Gemfile --without ${without_gems}",
