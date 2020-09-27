@@ -2,7 +2,6 @@ pkg/*
 *.lock
 spec/fixtures
 *.swp
-Vagrantfile
 .vagrant
 .tmp/
 modules/
