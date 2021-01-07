@@ -94,6 +94,9 @@
 #   SMTP password for authentication.
 #   Default: none
 #
+# [*smtp_ssl*]
+#   Use SSL with SMTP. Default: false.
+#
 # [*webroot*]
 #   Directory in which redmine web files will be installed.
 #   Default: 'DOCROOT/redmine'
@@ -141,6 +144,7 @@ class redmine (
   $smtp_authentication  = false,
   $smtp_username        = '',
   $smtp_password        = '',
+  $smtp_ssl             = false,
   $vhost_aliases        = 'redmine',
   $vhost_servername     = 'redmine',
   $webroot              = "${apache::docroot}/redmine",
